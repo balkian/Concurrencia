@@ -3,10 +3,10 @@ package es.upm.dit.adsw.threads;
 import java.util.Date;
 
 /**
- * Reloj segundero construido con un objeto Thread anónimo.
+ * Reloj1 segundero construido con un objeto Thread anónimo.
  * 
  * @author jpuente
- * @version 20.09.2013
+ * @version 2019.03.06
  */
 public class Reloj5 {
 

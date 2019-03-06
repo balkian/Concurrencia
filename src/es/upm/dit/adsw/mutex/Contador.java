@@ -1,4 +1,3 @@
-
 package es.upm.dit.adsw.mutex;
 
 /**
@@ -6,7 +5,7 @@ package es.upm.dit.adsw.mutex;
  * No es seguro en un entorno concurrente
 
  * @author jpuente
- * @version 15.10.2014
+ * @version 2019.03.06
  */
 public class Contador {
 

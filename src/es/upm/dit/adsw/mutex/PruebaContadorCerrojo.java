@@ -6,7 +6,7 @@ package es.upm.dit.adsw.mutex;
  * @author jpuente
  * @version 2019.03.06
  */
-public class PruebaContador {
+public class PruebaContadorCerrojo {
 	
 	static final long nVeces = 1000000;
 	static final int nThreads = 10;
@@ -15,9 +15,9 @@ public class PruebaContador {
 	 * Hebra que incrementa el contador n veces
 	 */
 	private static class Incrementa extends Thread {
-		Contador contador;
+		ContadorCerrojo contador;
 		
-		public Incrementa (Contador c) {
+		public Incrementa (ContadorCerrojo c) {
 			contador = c;
 		}
 		
@@ -28,7 +28,7 @@ public class PruebaContador {
 	}
 	
 	public static void main(String[] args) {
-		Contador contador = new Contador (0);
+		ContadorCerrojo contador = new ContadorCerrojo (0);
 		Incrementa[] hebra = new Incrementa[nThreads];
 
 		System.out.println(nThreads + " contadores incrementando " 

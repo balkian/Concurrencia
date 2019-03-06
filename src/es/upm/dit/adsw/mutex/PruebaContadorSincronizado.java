@@ -1,9 +1,8 @@
-/**
- * Prueba de acceso concurrente a un contador sincronizado
- */
 package es.upm.dit.adsw.mutex;
 
 /**
+ * Prueba de acceso concurrente a un contador sincronizado
+ *
  * @author jpuente
  * @version 15.10.2014
  */

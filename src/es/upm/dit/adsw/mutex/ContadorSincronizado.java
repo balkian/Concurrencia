@@ -1,7 +1,3 @@
-/**
- * Contador sincronizado
- * Se puede usar en un entorno concurrente (thread safe)
- */
 package es.upm.dit.adsw.mutex;
 
 /**
@@ -9,7 +5,7 @@ package es.upm.dit.adsw.mutex;
  * Seguro en un entorno concurrente
  * 
  * @author jpuente
- * @version 15.10.2014
+ * @version 2019.03.06
  */
 public class ContadorSincronizado  {
 	

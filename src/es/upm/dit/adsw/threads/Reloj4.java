@@ -3,11 +3,11 @@ package es.upm.dit.adsw.threads;
 import java.util.Date;
 
 /**
- * Reloj que escribe la hora cada segundo. Construido con un objeto Thread con
+ * Reloj1 que escribe la hora cada segundo. Construido con un objeto Thread con
  * un método run interno.
  * 
  * @author jpuente
- * @version 24.09.2013
+ * @version 2019.03.06
  */
 public class Reloj4 {
 

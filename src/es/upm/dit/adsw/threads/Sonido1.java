@@ -1,6 +1,6 @@
 package es.upm.dit.adsw.threads;
 
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Scanner;
 
 /**
@@ -9,14 +9,21 @@ import java.util.Scanner;
  * @author jpuente
  * @version 2019.03.06
  */
-public class Sonido extends Thread {
+public class Sonido1 extends Thread {
+
+	private volatile Boolean activo = true;
 
 	@Override
 	public void run() {                           /* código concurrente */
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while(activo) {
 			sc.nextLine();                       /* espera fin de línea */
 			Toolkit.getDefaultToolkit().beep();  /* emite sonido */
 		}
 	}
+
+	public void detener() {
+		activo = false;
+	}
+
 }

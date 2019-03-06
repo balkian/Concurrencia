@@ -8,12 +8,14 @@ import java.util.Date;
  * @author jpuente
  * @version 2019.03.06
  */
-public class Hora extends Thread {
+public class Hora1 extends Thread {
+	
+	private volatile Boolean activo = true;
 
 	@Override
 	public void run()  {              /* código concurrente */
 		try {
-			while (true) {
+			while (activo) {
 				sleep(1000);           /* esperar 1000 ms */
 				System.out.println(new Date().toString());
 			}
@@ -22,4 +24,7 @@ public class Hora extends Thread {
 		} 
 	}
 	
+	public void detener() {
+		activo = false;
+	}
 }
