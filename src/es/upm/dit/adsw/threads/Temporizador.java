@@ -18,8 +18,8 @@ public class  Temporizador {
 		segundero.start();
 		try {
 			Thread.sleep(tiempoEspera * 1000);
-//			segundero.interrupt(); // Fin de la espera
-			segundero.detener();
+			segundero.interrupt(); // Fin de la espera
+//			segundero.detener();
 		} catch (Exception e) {
 			System.err.println("Error esperando ");
 		}

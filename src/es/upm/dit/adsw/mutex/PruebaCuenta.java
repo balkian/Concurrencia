@@ -19,8 +19,16 @@ public class PruebaCuenta {
     }
 
     public static void main(String[] args) {
-        new Incrementa().start(); /* hebra 1 */
-        new Incrementa().start(); /* hebra 2 */
+        Incrementa i1 = new Incrementa();
+        i1.start(); /* hebra 1 */
+        Incrementa i2 =new Incrementa();
+        i2.start(); /* hebra 2 */
+        try {
+            i1.join();
+            i2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("cuenta = " + cuenta + " (debería ser " + 2*1_000_000 + ")");
     }
 

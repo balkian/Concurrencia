@@ -14,7 +14,7 @@ public class Reloj {
 	 */
 	public static void main(String[] args) {
 
-		Hora1 hora   = new Hora1() ;          // crea las hebras
+		Hora hora   = new Hora() ;          // crea las hebras
 		Sonido sonido = new Sonido();
 		hora.start();                        // ... y las arranca
 		sonido.start();

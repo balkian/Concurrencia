@@ -9,8 +9,8 @@ package es.upm.dit.adsw.buffer;
 public class BufferMultiple <E> implements Buffer<E> {
 
 	private E[] almacen;
-	private int nmax = 1;            // tamaño del buffer
-	private int n = 0;               // número de elementos almacenados
+	private final int N;      // tamaño del buffer
+	private int n = 0;        // número de elementos almacenados
 	private int in = 0;
 	private int out = 0;
 	
@@ -22,32 +22,36 @@ public class BufferMultiple <E> implements Buffer<E> {
 	 */
 	@SuppressWarnings("unchecked")
 	public BufferMultiple (int n) {
-		this.nmax = n;
+		this.N = n;
 		this.almacen = (E[]) new Object[n];
 	}
 
 	public synchronized void enviar(E dato) {
-		try {
-			while (n >= nmax)
+		while (n == N) {
+			try {
 				wait(); // espera que haya sitio
-		} catch (InterruptedException ignored) {
+			} catch (InterruptedException ignored) { }
 		}
+		assert n < N;
 		almacen[in] = dato;
-		in = ++in % nmax;
+		in = ++in % N;
 		n++;
+		assert n > 0;
 		notifyAll(); // avisa de que hay un valor
 	}
 
 	public synchronized E recibir() {
 		E dato = null;
-		try {
-			while (n <= 0)
+		while (n == 0) {
+			try {
 				wait(); // espera que haya un valor
-		} catch (InterruptedException ignored) {
+			} catch (InterruptedException ignored) { }
 		}
+		assert n > 0;
 		dato = almacen[out];
-		out = ++out % nmax;
+		out = ++out % N;
 		n--;
+		assert n < N;
 		notifyAll(); // avisa de que hay sitio
 		return dato;
 	}

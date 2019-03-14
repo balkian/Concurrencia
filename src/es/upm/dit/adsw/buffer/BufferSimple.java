@@ -12,11 +12,12 @@ public class BufferSimple <E> implements Buffer<E> {
 	private boolean lleno = false;
 
 	public synchronized void enviar(E dato) {
-		try {
-			while (lleno)
+		while (lleno) {
+			try {
 				wait(); // espera que haya sitio
-		} catch (InterruptedException ignored) {
+			} catch (InterruptedException ignored) { }
 		}
+		assert !lleno;
 		almacen = dato;
 		lleno = true;
 		notifyAll(); // avisa de que hay un valor
@@ -24,11 +25,13 @@ public class BufferSimple <E> implements Buffer<E> {
 
 	public synchronized E recibir() {
 		E dato = null;
-		try {
-			while (!lleno)
+
+		while (!lleno) {
+			try {
 				wait(); // espera que haya un valor
-		} catch (InterruptedException ignored) {
+			} catch (InterruptedException ignored) { }
 		}
+		assert lleno;
 		dato = almacen;
 		lleno = false;
 		notifyAll(); // avisa de que hay sitio
