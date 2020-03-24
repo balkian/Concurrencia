@@ -26,7 +26,12 @@ public class ContadorCerrojo {
 	}
 
 	public long valor() {
-		return cuenta;
+		try {
+			cerrojo.lock();
+			return cuenta;
+		} finally {
+			cerrojo.unlock();
+		}
 	}
 	
 	/**
