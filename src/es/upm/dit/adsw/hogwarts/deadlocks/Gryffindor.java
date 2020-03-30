@@ -1,12 +1,22 @@
 package es.upm.dit.adsw.hogwarts.deadlocks;
 
+/**
+ * Hebra para crear un personaje de la casa Gryffindor. Los personajes de esta
+ * casa siguen el siguiente protocolo para lanzar un hechizo 
+ * primero: se ponen el sombrero 
+ * segundo: cogen la varita mágica 
+ * tercero: lanzan el hechizo
+ * 
+ * @author diegomartín
+ * @version 2020.03.30
+ */
+
 public class Gryffindor extends Thread {
 
 	private String nombre;
 	private Sombrero miSombrero;
 	private Varita miVarita;
 	private int sueño;
-
 
 	public Gryffindor(String nombre, Sombrero gorro, Varita miVarita, int sueño) {
 		this.nombre = "🦁 Gryffindor:\t" + nombre;
@@ -15,7 +25,6 @@ public class Gryffindor extends Thread {
 		this.sueño = sueño;
 	}
 
-	
 	@Override
 	public void run() {
 		while (true) {

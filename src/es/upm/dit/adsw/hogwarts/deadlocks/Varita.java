@@ -1,16 +1,16 @@
 package es.upm.dit.adsw.hogwarts.deadlocks;
 
 /**
- * Varita
+ * Varita es clase hija de ObjetoMágico
  * 
- * @author diegomartin
+ * @author diegomartín
  * @version 2020.03.20
  */
-public class Varita extends ObjetoMágico{
-
+public class Varita extends ObjetoMágico {
 
 	/**
-	 * @param nombre 
+	 * Constructor de la clase Varita
+	 * @param nombre String con el nombre de la varita
 	 */
 	public Varita(String nombre) {
 		super(nombre);
@@ -26,14 +26,16 @@ public class Varita extends ObjetoMágico{
 		} catch (InterruptedException ignored) {
 		}
 		System.out.println("Varita " + this.getNombre() + " ha sido cogida.");
-		this.ocupar();;
+		this.ocupar();
+		;
 	}
 
 	/**
 	 * Soltar varita
 	 */
 	public synchronized void soltar() {
-		this.desocupar();;
+		this.desocupar();
+		;
 		System.out.println("Varita " + this.getNombre() + " ha sido soltada.");
 		notifyAll();
 	}

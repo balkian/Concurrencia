@@ -1,19 +1,22 @@
 package es.upm.dit.adsw.hogwarts.deadlocks;
 
 /**
- * Sombrero
+ * Sombrero es clase hija de ObjetoMágico
  * 
- * @author diegomartin
+ * @author diegomartín
  * @version 2020.03.20
  */
+
 public class Sombrero extends ObjetoMágico {
 
+	/**
+	 * Constructor de la clase Sombrero
+	 * @param nombre String con el nombre del sombrero
+	 */
 	public Sombrero(String nombre) {
 		super(nombre);
 	}
 
-
-	
 	/**
 	 * Poner el sobrero
 	 */
@@ -31,7 +34,7 @@ public class Sombrero extends ObjetoMágico {
 	 * Quitar el sombrero
 	 */
 	public synchronized void quitar() {
-		this.desocupar();;
+		this.desocupar();
 		System.out.println("Sombrero " + this.getNombre() + " libre");
 		notifyAll();
 	}

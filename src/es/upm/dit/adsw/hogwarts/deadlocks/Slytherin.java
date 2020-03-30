@@ -1,5 +1,16 @@
 package es.upm.dit.adsw.hogwarts.deadlocks;
 
+/**
+ * Hebra para crear un personaje de la casa Slytherin. Los personajes de esta
+ * casa siguen el siguiente protocolo para lanzar un hechizo 
+ * primero: cogen la varita mágica 
+ * segundo: se ponen el sombrero 
+ * tercero: lanzan el hechizo
+ * 
+ * @author diegomartín
+ * @version 2020.03.30
+ */
+
 public class Slytherin extends Thread {
 
 	private String nombre;

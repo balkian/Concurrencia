@@ -2,17 +2,29 @@ package es.upm.dit.adsw.hogwarts.livelock;
 
 import java.util.concurrent.locks.Lock;
 
+/**
+ * Hebra para crear un personaje de la casa Gryffindor. Los personajes de esta
+ * casa siguen el siguiente protocolo para lanzar un hechizo 
+ * primero: se ponen el sombrero (obtiene el cerrojo) 
+ * segundo: cogen la varita mágica (obtiene el cerrojo) 
+ * tercero: lanzan el hechizo 
+ * cuarto: devuelve los cerrojos
+ * 
+ * @author diegomartín
+ * @version 2020.03.30
+ */
+
 public class Gryffindor extends Thread {
 
 	private String nombre;
-	private Lock cerrojo1;
-	private Lock cerrojo2;
+	private Lock cerrojoSombrero;
+	private Lock cerrojoVarita;
 	private int sueño;
 
-	public Gryffindor(String nombre, Lock cerrojo1, Lock cerrojo2, int sueño) {
+	public Gryffindor(String nombre, Lock cerrojoSombrero, Lock cerrojoVarita, int sueño) {
 		this.nombre = "🦁 Gryffindor:\t" + nombre;
-		this.cerrojo1 = cerrojo1;
-		this.cerrojo2 = cerrojo2;
+		this.cerrojoSombrero = cerrojoSombrero;
+		this.cerrojoVarita = cerrojoVarita;
 		this.sueño = sueño;
 	}
 
@@ -21,25 +33,26 @@ public class Gryffindor extends Thread {
 		while (true) { // se puede quitar porque es posible que se atasque a la
 						// primera
 			try {
-				while (!this.cerrojo1.tryLock()) {
-					System.out.println(this.nombre + " : \t espera al cerrojo 1.");
+				while (!this.cerrojoSombrero.tryLock()) {
+					System.out.println(this.nombre + " : \t espera al cerrojo del sombrero.");
 					Thread.sleep(this.sueño);
 				}
-				System.out.println(this.nombre + " : \t ha obtenido el cerrojo 1.");
+				System.out.println(this.nombre + " : \t ha obtenido el cerrojo del sombrero.");
 
-				while (!this.cerrojo2.tryLock()) {
-					System.out.println(this.nombre + " : \t espera al cerrojo 2.");
+				while (!this.cerrojoVarita.tryLock()) {
+					System.out.println(this.nombre + " : \t espera al cerrojo de la varita.");
 					Thread.sleep(this.sueño);
 				}
-				System.out.println(this.nombre + " : \t ha obtenido el cerrojo 2.");
+				System.out.println(this.nombre + " : \t ha obtenido el cerrojo de la varita.");
 
 				System.out.println(this.nombre + " : \t entra en la sección crítica y LANZA EL HECHIZO!");
-				this.cerrojo2.unlock();
-				System.out.println(this.nombre + " : \t devuelve el cerrojo 2.");
-				this.cerrojo1.unlock();
-				System.out.println(this.nombre + " : \t devuelve el cerrojo 1.");
+				this.cerrojoVarita.unlock();
+				System.out.println(this.nombre + " : \t devuelve el cerrojo de la varita.");
+				this.cerrojoSombrero.unlock();
+				System.out.println(this.nombre + " : \t devuelve el cerrojo del sombrero.");
 			} catch (InterruptedException e) {
-				// can be ignored here for this sample
+				// Se puede ignorar para este ejemplo. No debería haber
+				// interrupciones.
 			}
 		}
 	}
