@@ -37,6 +37,9 @@ public class ContadorBloques  {
 	/**
 	 * Smoke test
 	 */
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		final long nVeces = 1000000;
