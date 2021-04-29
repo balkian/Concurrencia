@@ -21,43 +21,6 @@ import java.util.List;
  */
 public class BancoHebras {
 	
-	static void escenario(int retardo) {
-		Cuenta cuenta = new Cuenta(100);
-		
-		List<Cajero> cajeros = new ArrayList<Cajero>();
-		List<Thread> hebras = new ArrayList<Thread>();
-		// Creamos 10 cajeros 
-		for(int i=0; i<10; i++) {
-			Cajero c = new Cajero(i, cuenta, retardo);
-			cajeros.add(c);
-
-			Thread h = new Thread() {
-				@Override
-				public void run() {
-					c.extraer(20);
-					c.info();					
-				}
-			};
-			hebras.add(h);
-			h.start();
-			// Cada cajero extrae 20 unidades
-		}
-		for(Thread t: hebras) {
-			try {
-				t.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int extraido = 0;
-		for(Cajero c: cajeros) {
-			extraido += c.extraido;
-		}
-
-		System.out.println("Extraido: " + extraido);
-	}
-
 	static int escenario(int retrasoCola, int retrasoCajero) throws InterruptedException {
 		Cuenta cuenta = new Cuenta(100);
 		
